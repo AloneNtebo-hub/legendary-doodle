@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alone O. Ntebogang — Junior Full Stack Developer</title>
+  <meta name="description" content="Portfolio — Alone Oatlhotse Ntebogang| Junior Full Stack Developer" />
+
+  <!-- Simple reset + CSS variables for theme -->
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#7c3aed;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+      --maxWidth:1100px;
+      --gap:20px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,#08101a 0%, #07121a 100%);
+      color:#e6eef8;line-height:1.5;padding:32px 16px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;justify-content:center;
+    }
+
+    .container{width:100%;max-width:var(--maxWidth);}
+    header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:28px}
+
+    .brand{font-weight:700;letter-spacing:0.2px}
+    nav{display:flex;gap:12px}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px}
+    nav a:hover{background:var(--glass);color:var(--accent)}
+
+    /* Mobile menu */
+    .menu-btn{display:none;border:0;background:transparent;color:var(--muted);font-size:18px}
+
+    main{display:grid;gap:var(--gap)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:center;padding:28px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:var(--radius)}
+    .hero h1{margin:0;font-size:28px}
+    .hero p{color:var(--muted);margin-top:8px}
+    .cta{margin-top:16px;display:flex;gap:12px}
+    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;border:0;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+
+    /* Card styles */
+    .card{background:var(--card);padding:16px;border-radius:12px}
+
+    /* Projects grid */
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .project{padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);cursor:pointer}
+    .project h3{margin:0 0 8px 0}
+    .project p{margin:0;color:var(--muted);font-size:14px}
+
+    /* About / resume / contact layout */
+    .two-col{display:grid;grid-template-columns:1fr 360px;gap:16px}
+
+    footer{margin-top:18px;color:var(--muted);font-size:13px;padding:10px 0;text-align:center}
+
+    /* Responsive */
+    @media (max-width:960px){
+      .hero, .two-col{grid-template-columns:1fr}
+      .projects{grid-template-columns:repeat(2,1fr)}
+      nav{display:none}
+      .menu-btn{display:inline-block}
+    }
+    @media (max-width:560px){
+      .projects{grid-template-columns:1fr}
+    }
+
+    /* Project modal (hidden by default) */
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6);opacity:0;pointer-events:none;transition:opacity .18s}
+    .modal.open{opacity:1;pointer-events:auto}
+    .modal .inner{width:min(900px,95%);background:#081122;padding:20px;border-radius:14px}
+
+    /* form styles */
+    form input, form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    form label{display:block;margin-bottom:6px;color:var(--muted);font-size:13px}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: none; }
+    }
+    .card.fade-in {
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 0.2s;
+    }
+    .card.fade-in:nth-of-type(2) { animation-delay: 0.4s; }
+    .card.fade-in:nth-of-type(3) { animation-delay: 0.6s; }
+    .card.fade-in:nth-of-type(4) { animation-delay: 0.8s; }
+    .btn {
+      transition: transform 0.18s cubic-bezier(.4,2,.6,1), box-shadow 0.18s;
+    }
+    .btn:hover, .btn:focus {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 4px 18px 0 #7c3aed33;
+    }
+    .modal .inner {
+      animation: fadeIn 0.4s cubic-bezier(.4,2,.6,1), scaleIn 0.4s cubic-bezier(.4,2,.6,1);
+      opacity: 1;
+    }
+    @keyframes scaleIn {
+      from { transform: scale(0.95); }
+      to { transform: scale(1); }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">Alone Oatlhotse Ntebogang</div>
+      <nav id="nav">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="menu-btn" id="menuBtn">☰</button>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section id="home" class="hero card fade-in">
+        <div>
+          <h1>Hi, my name is Alone O. Ntebogang</h1>
+          <p class="muted">Junior Full Stack Developer. I build web apps using HTML, CSS, JavaScript, and a bit of React.</p>
+          <div class="cta">
+            <button class="btn" onclick="scrollToSection('projects')">View Projects</button>
+            <a class="btn secondary" href="#contact">Contact Me</a>
+          </div>
+
+          <div style="margin-top:16px;color:var(--muted);font-size:13px">
+            <strong>Skills:</strong> HTML • CSS • JavaScript • Git
+          </div>
+        </div>
+
+        <aside style="display:flex;flex-direction:column;gap:12px;align-items:center">
+          <!-- Optional small widget like resume snapshot or profile card -->
+          <div style="width:100%;text-align:center">
+            <img src="profile.jpg" alt="Alone O. Ntebogang" style="width:120px;height:120px;object-fit:cover;border-radius:999px;box-shadow:0 2px 12px #0002;display:block;margin:0 auto" />
+            <p class="muted" style="margin-top:8px">Download Resume</p>
+            <!-- --- HERO SECTION ---
+            If you update your resume PDF, change the href below to match the new filename.
+            -->
+            <a class="btn" href="Alone Ntebogang Resume.pdf" style="margin-top:6px">Download PDF</a>
+          </div>
+        </aside>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="card fade-in">
+        <h2>Projects</h2>
+        <p class="muted">A few projects that demonstrate my skills. Click a card to read more.</p>
+        <div class="projects" style="margin-top:12px" id="projectsGrid">
+          <div class="project" data-title="Calculator App" data-desc="A simple yet efficient web-based calculator that performs basic arithmetic operations with a clean and responsive UI. Designed to be lightweight and intuitive, it demonstrates practical use of HTML, CSS, and JavaScript for interactive front-end development." data-demo="calculator.html" data-code="https://github.com/AloneNtebo-hub/legendary-doodle" tabindex="0" role="button" aria-label="Open Calculator App details">
+            <h3>Calculator App</h3>
+            <p class="muted">HTML • CSS • JS</p>
+          </div>
+          <div class="project" data-title="Portfolio Site" data-desc="This portfolio site built from scratch." data-demo="Portfolio site.html" data-code=https://github.com/AloneNtebo-hub/legendary-doodle" tabindex="0" role="button" aria-label="Open Portfolio Site details">
+            <h3>Portfolio Site</h3>
+            <p class="muted">HTML • CSS • JS</p>
+          </div>
+          <div class="project" data-title="Pine City Zoo" data-desc="Built with JavaScript (and optional game libraries), it highlights creativity, logic, and problem-solving in game development." data-demo="Pine City zoo.html" data-code="https://github.com/AloneNtebo-hub/legendary-doodle" tabindex="0" role="button" aria-label="Open Pine City Zoo details">
+            <h3>Pine City Zoo</h3>
+            <p class="muted">HTML • CSS • JS</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- TWO COLUMN: ABOUT + EXPERIENCE -->
+      <section class="two-col">
+        <div class="card fade-in" id="about">
+          <h2>About Me</h2>
+          <p class="muted">I’m a Junior Full Stack Developer with a passion for building clean, functional, and user-friendly web applications. I work across the stack — from crafting responsive frontends with HTML, CSS, and JavaScript to developing robust backends using Node.js and Express.
+
+I’m currently strengthening my database knowledge by taking up an SQL course, complementing my skills in MongoDB and other modern tools. This helps me design applications that are not only functional but also scalable and data-driven.
+
+Alongside my technical skills, I bring strong soft skills such as teamwork, adaptability, problem-solving, communication, and time management. I enjoy collaborating with others, learning quickly in new environments, and turning ideas into working solutions.
+
+My goal is to keep growing as a developer while contributing to projects that solve real-world problems and make a positive impact.</p>
+
+          <h3 style="margin-top:16px">Experience</h3>
+          <ul style="padding-left:18px;color:var(--muted)">
+            <li>Full Stack Development Certificate
+2025
+
+Completed structured training in web development, covering front-end and back-end technologies.
+
+Gained practical knowledge in building dynamic, database-driven applications.
+ </li>
+
+            <li>Ongoing Learning — SQL Course
+2025 (in progress)
+
+Currently expanding database skills by learning SQL for relational database design, querying, and optimization.</li>
+            <li>Other Work Experience & Skills
+
+                Experienced in balancing long schedules (7 AM – 5 PM academic days), showcasing discipline and time management.
+            </li>
+          </ul>
+        </div>
+
+        <aside class="card fade-in">
+          <h3>Contact / Links</h3>
+          <!-- --- CONTACT/LINKS SECTION ---
+          Update your email and GitHub link here if they change in the future.
+          -->
+          <p class="muted">Email: <a href="mailto:aloneoatlhotsentebogang@gmail.com">aloneoatlhotsentebogang@gmail.com</a><br/>GitHub: <a href="https://github.com/AloneNtebo-hub">github.com/AloneNtebo-hub</a></p>
+
+          <h3 style="margin-top:12px">Tools</h3>
+          <p class="muted">VSCode • Git • Chrome DevTools </p>
+        </aside>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="card fade-in">
+        <h2>Contact</h2>
+        <p class="muted">Have a project or job opportunity? Send a message.</p>
+        <form id="contactForm" style="margin-top:12px;display:grid;gap:10px;max-width:680px">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" required placeholder="Your name">
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com">
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Hi, I'm interested in ..."></textarea>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button type="submit" class="btn">Send Message</button>
+            <button type="button" class="btn secondary" onclick="resetForm()">Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <footer>© <span id="year"></span> Alone O. Ntebogang— Built with HTML • CSS • JS</footer>
+
+    </main>
+
+    <!-- Project modal -->
+    <div class="modal" id="modal">
+      <div class="inner card" id="modalInner">
+        <!-- The close button will have an id for JS event binding -->
+        <button id="modalCloseBtn" style="float:right;background:transparent;border:0;color:var(--muted);font-size:18px">✕</button>
+        <h3 id="modalTitle">Project Title</h3>
+        <p id="modalDesc" class="muted">Project description goes here.</p>
+        <div style="margin-top:10px">
+          <a id="modalDemo" href="#" class="btn">Live Demo</a>
+          <a id="modalCode" href="#" class="btn secondary" style="margin-left:8px">Source Code</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- JS: navigation, modal, simple contact validation -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // small helpers
+      function $(s){return document.querySelector(s)}
+      function $all(s){return document.querySelectorAll(s)}
+
+      // set year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Mobile menu toggle
+      const menuBtn = $('#menuBtn');
+      const nav = $('#nav');
+      menuBtn.addEventListener('click',()=>{nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex'});
+
+      // Smooth scroll helper
+      window.scrollToSection = function(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+
+      // Project modal
+      function openProject(el){
+        console.log('openProject called for:', el.getAttribute('data-title'));
+        const title = el.getAttribute('data-title') || 'Project';
+        const desc = el.getAttribute('data-desc') || '';
+        const demo = el.getAttribute('data-demo') || '#';
+        const code = el.getAttribute('data-code') || '#';
+        document.getElementById('modalTitle').textContent = title;
+        document.getElementById('modalDesc').textContent = desc;
+        document.getElementById('modalDemo').href = demo;
+        document.getElementById('modalCode').href = code;
+        document.getElementById('modal').classList.add('open');
+        document.body.classList.add('modal-open');
+        document.getElementById('modalInner').focus();
+      }
+      window.openProject = openProject;
+      function closeModal(){
+        document.getElementById('modal').classList.remove('open');
+        document.body.classList.remove('modal-open');
+      }
+      window.closeModal = closeModal;
+
+      // Close modal on outside click
+      $('#modal').addEventListener('click',(e)=>{if(e.target === $('#modal')) closeModal()});
+
+      // Contact form (local validation + placeholder for sending)
+      const form = $('#contactForm');
+      form.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        const data = {name:form.name.value, email:form.email.value, message:form.message.value};
+        // Basic validation
+        if(!data.name || !data.email || !data.message){alert('Please fill all fields');return}
+        // You can add your backend POST here
+      });
+
+      window.resetForm = function(){form.reset()}
+
+      // keyboard: close modal on ESC
+      window.addEventListener('keydown', (e)=>{if(e.key === 'Escape') closeModal()});
+
+      // make project cards keyboard and mouse accessible
+      $all('.project').forEach(p=>{
+        p.tabIndex=0;
+        p.onclick = function(){ 
+          console.log('Project card clicked:', this.getAttribute('data-title'));
+          openProject(this); 
+        };
+        p.onkeypress = function(e){ if(e.key==='Enter' || e.key===' ') openProject(this); };
+      });
+
+      // Trap focus inside modal for accessibility
+      document.getElementById('modalInner').setAttribute('tabindex', '-1');
+
+      // Remove inline onclick and attach close handler in JS
+      $('#modalCloseBtn').addEventListener('click', closeModal);
+    });
+  </script>
+</body>
+</html>

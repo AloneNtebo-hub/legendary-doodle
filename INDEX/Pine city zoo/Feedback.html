@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Feedback - Pine City Zoo</title>
+</head>
+<body>
+    <div id="header">
+        <img src="images/logo.png" alt="Pine City Zoo Logo"/>
+    </div>
+    <div id="tabs-top">
+        <a href="Animals.html">ANIMALS</a>
+        <a href="Pine City zoo.html">MAP</a>
+        <a href="Places.html">PLACES</a>
+    </div>
+    <div class="page-section">
+        <h2>Feedback</h2>
+        <form class="feedback-form" onsubmit="submitFeedback(event)">
+            <input type="text" placeholder="Your Name" required>
+            <textarea placeholder="Your feedback..." required></textarea>
+            <button type="submit">Send Feedback</button>
+        </form>
+        <div id="feedback-message" style="margin-top:12px;color:#7c3aed;"></div>
+    </div>
+    <div id="tabs-bottom">
+        <a href="Weather.html">WEATHER</a>
+        <a href="Feedback.html">FEEDBACK</a>
+    </div>
+    <script>
+    function submitFeedback(e) {
+        e.preventDefault();
+        document.getElementById('feedback-message').textContent = 'Thank you for your feedback!';
+        e.target.reset();
+    }
+    </script>
+</body>
+</html>

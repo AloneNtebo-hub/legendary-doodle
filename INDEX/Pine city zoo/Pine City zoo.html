@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Pine City Zoo</title>
+    </head>
+    <body>
+        <div id="header">
+            <img src="images/logo.png" alt="Pine City Zoo Logo"/>
+        </div>
+        <div id="tabs-top">
+            <a href="Animals.html">ANIMALS</a>
+            <a href="Pine City zoo.html">MAP</a>
+            <a href="Places.html">PLACES</a>
+        </div>
+        <div id="main-home">
+            <h1>Welcome to Pine City Zoo!</h1>
+            <p>Explore our interactive map, meet amazing animals, discover fun places, and check the weather before your visit. Use the navigation above and below to explore the zoo!</p>
+            <img src="images/map.png" width="100%" alt="Zoo Map"/>
+        </div>
+        <div id="tabs-bottom">
+            <a href="Weather.html">WEATHER</a>
+            <a href="Feedback.html">FEEDBACK</a>
+        </div>
+        <footer>
+            © <span id="year"></span> Pine City Zoo — All rights reserved.
+        </footer>
+        <script>
+            document.getElementById('year').textContent = new Date().getFullYear();
+        </script>
+    </body>
+</html>
